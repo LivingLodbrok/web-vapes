@@ -1,0 +1,394 @@
+/* =====================================================================
+   FLORERÍA AURORA — styles.css
+   ---------------------------------------------------------------------
+   PALETA "MAGENTA BOTÁNICO" (distintiva, no plantilla cream+terracotta):
+     --vino     #7A2E4A  Vino buganvilia  (primario, cálido floral)
+     --vino-2   #5A1E37  Vino profundo    (hover/contraste)
+     --hoja     #1F3D2B  Verde hoja       (texto oscuro / fondos)
+     --coral    #F08E7A  Coral suave      (acento)
+     --lienzo   #FBF7F4  Blanco cálido    (fondo, NO beige plantilla)
+     --tinta    #241A1F  Tinta            (texto principal)
+   Tipografía: Fraunces (display con carácter) + DM Sans (cuerpo).
+   Mobile-first. Accesible (contraste AA, foco visible, reduced-motion).
+   ===================================================================== */
+
+:root {
+  --vino: #7a2e4a;
+  --vino-2: #5a1e37;
+  --hoja: #1f3d2b;
+  --hoja-2: #34563f;
+  --coral: #f08e7a;
+  --lienzo: #fbf7f4;
+  --lienzo-2: #f3e9e6;
+  --tinta: #241a1f;
+  --gris: #6e6166;
+  --wa: #25d366;
+  --wa-dark: #075e54;
+  --blanco: #ffffff;
+
+  --sombra: 0 18px 48px rgba(122, 46, 74, 0.16);
+  --sombra-sm: 0 6px 18px rgba(36, 26, 31, 0.10);
+  --radio: 20px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "DM Sans", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--tinta);
+  background: var(--lienzo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+
+/* Foco de teclado visible y consistente en TODO control interactivo */
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 26px; border: none; border-radius: 999px;
+  font-family: var(--sans); font-size: 1rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn--sm { padding: 9px 16px; font-size: .9rem; }
+.btn--block { width: 100%; margin-top: 10px; }
+.btn--primary { background: var(--vino); color: var(--lienzo); }
+.btn--primary:not(:disabled):hover { background: var(--vino-2); box-shadow: var(--sombra-sm); }
+.btn--whatsapp { background: var(--wa); color: #06351c; }
+.btn--whatsapp:hover { background: #1fb959; box-shadow: 0 8px 20px rgba(37,211,102,.38); }
+.btn--insta {
+  background: linear-gradient(45deg, #f09433, #e6683c 30%, #dc2743 55%, #cc2366 75%, #bc1888);
+  color: #fff;
+}
+
+/* Icono WhatsApp dibujado en CSS (sin imágenes externas) */
+.ico-wa { width: 18px; height: 18px; border-radius: 50%; background: #06351c; position: relative; flex: none; }
+.ico-wa::before {
+  content: ""; position: absolute; inset: 3px; border-radius: 50%;
+  border: 2px solid var(--wa); border-bottom-color: transparent; transform: rotate(45deg);
+}
+.nav__links .ico-wa, .hero .ico-wa, .fab .ico-wa { background: #06351c; }
+.ico-wa--lg { width: 30px; height: 30px; }
+
+/* ---------- Navbar ---------- */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  background: rgba(251, 247, 244, .85); backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(122, 46, 74, .10); transition: box-shadow .3s ease;
+}
+.nav--scrolled { box-shadow: var(--sombra-sm); }
+.nav__inner {
+  max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+  justify-content: space-between; padding: 14px 20px;
+}
+.nav__logo { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--vino); text-decoration: none; }
+.nav__links { display: none; align-items: center; gap: 26px; }
+.nav__links a { color: var(--tinta); text-decoration: none; font-weight: 500; font-size: .95rem; position: relative; }
+.nav__links a:not(.btn)::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0;
+  background: var(--coral); transition: width .25s ease;
+}
+.nav__links a:not(.btn):hover::after { width: 100%; }
+.nav__toggle { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--vino); line-height: 1; }
+.nav__links.open {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+  position: absolute; inset: 100% 0 auto 0; background: var(--lienzo);
+  padding: 20px 24px; border-bottom: 1px solid rgba(122,46,74,.10);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; min-height: 94vh; display: flex; align-items: center;
+  padding: 120px 20px 80px;
+  background: url("../assets/pag04.jpg") center 35%/cover no-repeat;
+}
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, rgba(90,30,55,.58) 0%, rgba(36,26,31,.45) 100%);
+}
+.hero__content { position: relative; max-width: 660px; margin: 0 auto; text-align: center; color: #fff; }
+.hero__eyebrow { text-transform: uppercase; letter-spacing: 3px; font-size: .76rem; font-weight: 600; margin-bottom: 14px; opacity: .92; }
+.hero__title {
+  font-family: var(--serif); font-weight: 600; font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.08; margin-bottom: 18px; text-shadow: 0 2px 24px rgba(0,0,0,.28);
+}
+.hero__sub { font-size: 1.08rem; margin-bottom: 30px; opacity: .96; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+/* ---------- Secciones ---------- */
+.section { max-width: 1200px; margin: 0 auto; padding: 84px 20px; }
+.section--alt { max-width: none; background: var(--lienzo-2); }
+.section--alt .nosotros { max-width: 1200px; margin: 0 auto; }
+.section__head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+.section__eyebrow { text-transform: uppercase; letter-spacing: 2.5px; font-size: .76rem; font-weight: 700; color: var(--vino); margin-bottom: 10px; }
+.section__title { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3rem); color: var(--hoja); margin-bottom: 12px; }
+.section__lead { color: var(--gris); }
+
+/* ---------- Filtros ---------- */
+.filtros { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 34px; }
+.chip {
+  border: 1.5px solid rgba(122,46,74,.25); background: var(--blanco); color: var(--vino);
+  padding: 8px 18px; border-radius: 999px; font-family: var(--sans); font-weight: 600;
+  font-size: .88rem; cursor: pointer; transition: all .2s ease;
+}
+.chip:hover { border-color: var(--vino); }
+.chip--on { background: var(--vino); color: var(--lienzo); border-color: var(--vino); }
+
+/* ---------- Grid catálogo ---------- */
+.grid { display: grid; gap: 26px; grid-template-columns: 1fr; }
+.catalogo__vacio { text-align: center; color: var(--gris); grid-column: 1 / -1; padding: 40px 0; }
+.card {
+  background: var(--blanco); border-radius: var(--radio); overflow: hidden;
+  box-shadow: var(--sombra-sm); cursor: pointer; display: flex; flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover { transform: translateY(-8px); box-shadow: var(--sombra); }
+.card__media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.card:hover .card__media img { transform: scale(1.07); }
+.card__badge {
+  position: absolute; top: 12px; left: 12px; background: rgba(251,247,244,.92); color: var(--hoja);
+  font-size: .72rem; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.card__badge--star { background: var(--vino); color: var(--lienzo); }
+.card__body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.card__name { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--hoja); }
+.card__type { color: var(--vino); font-size: .85rem; font-weight: 600; }
+.card__desc { color: var(--gris); font-size: .92rem; }
+.card__foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; }
+.card__price { color: var(--gris); font-size: .9rem; }
+.card__price strong { color: var(--tinta); font-size: 1.05rem; }
+.card__cta { font-size: .85rem; font-weight: 700; color: var(--vino); transition: transform .2s; }
+.card:hover .card__cta { transform: translateX(3px); }
+
+/* ---------- Nosotros ---------- */
+.nosotros { display: grid; gap: 36px; align-items: center; padding: 84px 20px; }
+.nosotros__text p { color: var(--gris); margin-top: 14px; }
+.nosotros__valor { font-family: var(--serif); font-size: 1.3rem; font-style: italic; color: var(--vino) !important; }
+.nosotros__foto img { border-radius: var(--radio); box-shadow: var(--sombra); width: 100%; object-fit: cover; }
+
+/* ---------- Reseñas ---------- */
+.resenas { display: grid; gap: 24px; grid-template-columns: 1fr; }
+.resena { background: var(--blanco); border-radius: var(--radio); padding: 26px; box-shadow: var(--sombra-sm); border-top: 3px solid var(--coral); margin: 0; }
+.resena__stars { color: var(--vino); font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 12px; }
+.resena__text { font-size: 1.02rem; color: var(--tinta); margin-bottom: 18px; font-style: italic; }
+.resena__person { display: flex; align-items: center; gap: 12px; }
+.resena__avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: var(--lienzo-2); }
+.resena__avatar--ph { display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; color: var(--vino); font-size: 1.2rem; }
+.resena__name { font-weight: 600; }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--hoja); color: var(--lienzo); padding: 60px 20px 30px; }
+.footer__grid { max-width: 1200px; margin: 0 auto; display: grid; gap: 32px; grid-template-columns: 1fr; }
+.footer__brand { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 8px; }
+.footer__tag { opacity: .85; font-style: italic; font-family: var(--serif); font-size: 1.1rem; margin-bottom: 12px; }
+.footer__aviso { font-size: .88rem; opacity: .8; }
+.footer__col h4 { margin-bottom: 12px; font-size: 1rem; color: var(--coral); }
+.footer__col p { opacity: .88; font-size: .94rem; margin-bottom: 6px; }
+.footer__social { display: flex; flex-direction: column; gap: 8px; }
+.footer__social a { color: var(--lienzo); text-decoration: none; opacity: .88; transition: opacity .2s, color .2s; }
+.footer__social a:hover { opacity: 1; color: var(--coral); }
+.footer__nota { max-width: 760px; margin: 36px auto 0; text-align: center; opacity: .7; font-size: .8rem; line-height: 1.5; }
+.footer__copy { text-align: center; margin-top: 16px; opacity: .65; font-size: .85rem; }
+
+/* ---------- Modal configurador ---------- */
+.modal { position: fixed; inset: 0; z-index: 100; display: none; }
+.modal.open { display: block; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(36,26,31,.58); backdrop-filter: blur(3px); }
+.modal__box {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: min(900px, 94vw); max-height: 92vh; overflow-y: auto;
+  background: var(--lienzo); border-radius: 24px; box-shadow: var(--sombra); animation: pop .25s ease;
+}
+@keyframes pop { from { opacity: 0; transform: translate(-50%, -46%) scale(.97); } }
+.modal__close {
+  position: absolute; top: 12px; right: 14px; z-index: 2; background: rgba(251,247,244,.92); border: none;
+  width: 38px; height: 38px; border-radius: 50%; font-size: 1.6rem; line-height: 1; cursor: pointer;
+  color: var(--vino); box-shadow: var(--sombra-sm);
+}
+.cfg { display: grid; grid-template-columns: 1fr; }
+.cfg__media { aspect-ratio: 4/3; }
+.cfg__media img { width: 100%; height: 100%; object-fit: cover; }
+.cfg__body { padding: 26px 26px 30px; }
+.cfg__tipo { text-transform: uppercase; letter-spacing: 2px; font-size: .74rem; color: var(--vino); font-weight: 700; }
+.cfg__nombre { font-family: var(--serif); font-size: 1.9rem; color: var(--hoja); margin: 4px 0 6px; }
+.cfg__desc { color: var(--gris); margin-bottom: 18px; }
+
+/* Reglas (pills) */
+.cfg__rules { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.pill { background: var(--vino); color: var(--lienzo); font-size: .82rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+.pill--soft { background: var(--lienzo-2); color: var(--vino); }
+
+.cfg__field { margin-bottom: 22px; }
+.cfg__label { display: block; font-weight: 700; margin-bottom: 10px; color: var(--hoja); }
+.cfg__label small { font-weight: 400; color: var(--gris); }
+
+/* Swatches: chip de color + nombre (accesible, no solo color) */
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.swatch {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px;
+  border-radius: 999px; border: 2px solid transparent; background: var(--blanco);
+  box-shadow: var(--sombra-sm); cursor: pointer; font-size: .88rem; font-family: var(--sans);
+  transition: border-color .2s, transform .15s;
+}
+.swatch:hover { transform: translateY(-2px); }
+.swatch__dot { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.14); }
+.swatch.selected { border-color: var(--vino); background: var(--lienzo-2); }
+.swatch.selected .swatch__txt { font-weight: 700; color: var(--vino); }
+
+/* "Incluye" (mixtos) */
+.cfg__incluye { margin-bottom: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.cfg__incluye-cap { font-weight: 700; color: var(--hoja); font-size: .9rem; }
+.tagx { background: var(--lienzo-2); color: var(--vino); font-size: .8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+
+/* Selector de PRESENTACIÓN (precio fijo) */
+.opciones { display: flex; flex-direction: column; gap: 8px; }
+.opcion {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; border-radius: 14px; border: 2px solid rgba(122,46,74,.18);
+  background: var(--blanco); cursor: pointer; font-family: var(--sans); text-align: left;
+  transition: border-color .2s, transform .15s, background .2s;
+}
+.opcion:hover { transform: translateY(-2px); border-color: var(--vino); }
+.opcion.selected { border-color: var(--vino); background: var(--lienzo-2); }
+.opcion__et { font-weight: 600; color: var(--tinta); font-size: .95rem; }
+.opcion__precio { font-weight: 700; color: var(--vino); font-family: var(--serif); font-size: 1.1rem; }
+.cfg__cotiza { margin-top: 10px; font-size: .8rem; color: var(--gris); }
+.cfg__nota-color { margin-top: 10px; font-size: .8rem; color: var(--gris); font-style: italic; }
+
+/* Subtotal */
+.cfg__subtotal {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px 18px; background: var(--hoja); color: var(--lienzo); border-radius: 14px; margin-bottom: 18px;
+}
+.cfg__subtotal small { display: block; opacity: .75; font-size: .74rem; font-weight: 400; }
+.cfg__subtotal strong { font-family: var(--serif); font-size: 1.7rem; }
+
+/* FIRMA: preview del mensaje como burbuja de chat */
+.cfg__preview { margin-bottom: 18px; }
+.cfg__preview-cap { font-size: .76rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gris); font-weight: 600; }
+.cfg__bubble {
+  margin-top: 8px; background: var(--blanco); border: 1px solid rgba(122,46,74,.14);
+  border-left: 4px solid var(--wa); border-radius: 4px 14px 14px 14px; padding: 14px 16px;
+  font-size: .9rem; color: var(--tinta); white-space: pre-line; box-shadow: var(--sombra-sm);
+}
+
+.cfg__hint { text-align: center; color: var(--vino); font-size: .85rem; min-height: 1.2em; margin-top: 8px; }
+
+/* Canales (revelados al solicitar) */
+.cfg__canales { margin-top: 16px; padding-top: 18px; border-top: 1px dashed rgba(122,46,74,.25); animation: fade .3s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+.cfg__canales-cap { text-align: center; font-family: var(--serif); font-size: 1.2rem; color: var(--hoja); margin-bottom: 6px; }
+.cfg__note { font-size: .82rem; color: var(--gris); margin-top: 12px; text-align: center; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+  background: var(--hoja); color: var(--lienzo); padding: 14px 22px; border-radius: 999px;
+  box-shadow: var(--sombra); z-index: 200; opacity: 0; pointer-events: none;
+  transition: opacity .3s, transform .3s; font-size: .92rem; max-width: 90vw; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- FAB WhatsApp ---------- */
+.fab {
+  position: fixed; right: 20px; bottom: 22px; z-index: 60; width: 58px; height: 58px;
+  border-radius: 50%; background: var(--wa); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(37,211,102,.45); text-decoration: none;
+  transition: transform .25s ease; animation: float 2.6s ease-in-out infinite;
+}
+.fab:hover { transform: scale(1.08); }
+@keyframes float { 50% { transform: translateY(-6px); } }
+
+/* ---------- Botón de carrito (nav) ---------- */
+.nav__actions { display: flex; align-items: center; gap: 10px; }
+.cart-btn {
+  position: relative; background: none; border: none; cursor: pointer;
+  font-size: 1.4rem; line-height: 1; padding: 4px; color: var(--vino);
+}
+.cart-btn__count {
+  position: absolute; top: -6px; right: -8px; min-width: 20px; height: 20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--vino); color: var(--lienzo); font-size: .72rem; font-weight: 700;
+  border-radius: 999px; padding: 0 5px; font-family: var(--sans);
+}
+
+/* ---------- Carrito (panel lateral) ---------- */
+.cart { position: fixed; inset: 0; z-index: 120; display: none; }
+.cart.open { display: block; }
+.cart__backdrop { position: absolute; inset: 0; background: rgba(36,26,31,.55); backdrop-filter: blur(3px); }
+.cart__panel {
+  position: absolute; top: 0; right: 0; height: 100%; width: min(440px, 92vw);
+  background: var(--lienzo); box-shadow: var(--sombra); display: flex; flex-direction: column;
+  padding: 20px 22px 26px; overflow-y: auto; animation: slideIn .28s ease;
+}
+@keyframes slideIn { from { transform: translateX(40px); opacity: 0; } }
+.cart__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cart__head h3 { font-family: var(--serif); font-size: 1.7rem; color: var(--hoja); }
+.cart__close { position: static; box-shadow: none; }
+.cart__items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+.cart__vacio { text-align: center; color: var(--gris); padding: 30px 0; }
+.citem {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--blanco); border-radius: 14px; padding: 12px 14px; box-shadow: var(--sombra-sm);
+}
+.citem__name { font-weight: 700; color: var(--hoja); font-size: .96rem; }
+.citem__meta { color: var(--gris); font-size: .82rem; }
+.citem__price { color: var(--vino); font-size: .82rem; font-weight: 600; }
+.citem__actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.citem__qty { display: inline-flex; align-items: center; gap: 10px; }
+.citem__btn {
+  width: 28px; height: 28px; border: none; border-radius: 8px; background: var(--vino);
+  color: var(--lienzo); font-size: 1.1rem; cursor: pointer; line-height: 1;
+}
+.citem__btn:hover { background: var(--vino-2); }
+.citem__del { background: none; border: none; color: var(--gris); font-size: .76rem; cursor: pointer; text-decoration: underline; }
+.citem__del:hover { color: var(--vino); }
+.cart__total {
+  display: flex; align-items: center; justify-content: space-between; margin: 14px 0;
+  padding: 14px 16px; background: var(--hoja); color: var(--lienzo); border-radius: 14px;
+}
+.cart__total strong { font-family: var(--serif); font-size: 1.5rem; }
+.cart__form { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.cart__label { font-weight: 600; color: var(--hoja); font-size: .88rem; margin-top: 8px; }
+.cart__input {
+  padding: 11px 14px; border: 1.5px solid rgba(122,46,74,.22); border-radius: 12px;
+  font-family: var(--sans); font-size: .95rem; background: var(--blanco); color: var(--tinta);
+}
+.cart__input:focus { outline: none; border-color: var(--vino); }
+.cart__hint { text-align: center; color: var(--vino); font-size: .84rem; min-height: 1.1em; margin-top: 8px; }
+
+/* ========== RESPONSIVE ========== */
+@media (min-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .resenas { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 768px) {
+  .nav__links { display: flex; }
+  .nav__toggle { display: none; }
+  .nosotros { grid-template-columns: 1.1fr 1fr; }
+  .cfg { grid-template-columns: 1fr 1fr; }
+  .cfg__media { aspect-ratio: auto; }
+  .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+@media (min-width: 992px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .resenas { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

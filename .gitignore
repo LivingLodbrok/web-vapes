@@ -1,0 +1,15 @@
+# Dependencias / build
+node_modules/
+.vercel/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs y temporales
+*.log
+.cache/
+
+# Configuración local del editor/preview (opcional)
+.claude/

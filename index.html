@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO básico ===== -->
+  <title>Fellie Florería · Ramos de flores frescas en Monterrey</title>
+  <meta name="description" content="Ramos de flores frescas hechos a mano en Monterrey. Diseños monoflorales y mixtos. Configura tu pedido y ciérralo por WhatsApp o Instagram." />
+  <meta name="theme-color" content="#7A2E4A" />
+
+  <!-- ===== Open Graph (al compartir el link) ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fellie Florería · Ramos de flores frescas" />
+  <meta property="og:description" content="Configura tu ramo y pídelo por WhatsApp o Instagram. Flores frescas en Monterrey. Hecho con amor desde casa." />
+  <meta property="og:image" content="assets/pag28.png" />
+  <meta property="og:locale" content="es_MX" />
+
+  <!-- ===== Tipografías: Fraunces (display, con carácter) + DM Sans (body) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER / NAV ================= -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#inicio" class="nav__logo" data-nombre>Florería Aurora</a>
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#resenas">Reseñas</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#" class="btn btn--whatsapp btn--sm" data-wa-link target="_blank" rel="noopener">
+          <span class="ico-wa"></span> Pedir por WhatsApp
+        </a>
+      </nav>
+      <div class="nav__actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Ver tu pedido">
+          🛒<span class="cart-btn__count" id="cartCount" hidden>0</span>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Flores frescas · Hechas a mano · Monterrey</p>
+      <h1 class="hero__title" data-eslogan>Ramos que dicen lo que las palabras callan</h1>
+      <p class="hero__sub">
+        Elige tu ramo, configúralo a tu gusto y cierra tu pedido en segundos
+        por WhatsApp o Instagram. Sin pagos en línea: te atendemos en persona.
+      </p>
+      <div class="hero__cta">
+        <a href="#catalogo" class="btn btn--primary">Ver catálogo</a>
+        <a href="#" class="btn btn--whatsapp" data-wa-link target="_blank" rel="noopener">
+          <span class="ico-wa"></span> Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATÁLOGO ================= -->
+  <section class="section" id="catalogo">
+    <div class="section__head">
+      <p class="section__eyebrow">Nuestro catálogo</p>
+      <h2 class="section__title">Elige tu ramo favorito</h2>
+      <p class="section__lead">Toca una tarjeta para configurar cantidad, colores y ver tu estimado.</p>
+    </div>
+    <!-- Filtro por tipo de flor (se inyecta) -->
+    <div class="filtros" id="catalogoFiltros" role="group" aria-label="Filtrar por tipo de flor"></div>
+    <!-- Grid de tarjetas (se inyecta) -->
+    <div class="grid" id="catalogoGrid"></div>
+  </section>
+
+  <!-- ================= NOSOTROS ================= -->
+  <section class="section section--alt" id="nosotros">
+    <div class="nosotros">
+      <div class="nosotros__text">
+        <p class="section__eyebrow">Quiénes somos</p>
+        <h2 class="section__title">Flores con historia</h2>
+        <p id="nosHistoria"></p>
+        <p class="nosotros__valor" id="nosPropuesta"></p>
+      </div>
+      <div class="nosotros__foto">
+        <img id="nosFoto" alt="Nuestro taller floral" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESEÑAS ================= -->
+  <section class="section" id="resenas">
+    <div class="section__head">
+      <p class="section__eyebrow">Lo que dicen nuestros clientes</p>
+      <h2 class="section__title">Reseñas reales</h2>
+    </div>
+    <div class="resenas" id="resenasGrid"></div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" id="contacto">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3 class="footer__brand" data-nombre>Florería Aurora</h3>
+        <p class="footer__tag" data-eslogan></p>
+        <p class="footer__aviso">🌷 La compra se finaliza por WhatsApp o Instagram, con atención personalizada.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <p>Tel: <span id="footTel"></span></p>
+        <p id="footMail"></p>
+      </div>
+      <div class="footer__col">
+        <h4>Visítanos</h4>
+        <p id="footHorario"></p>
+        <p id="footUbicacion"></p>
+        <p>Entregas: <span id="footCiudad"></span></p>
+      </div>
+      <div class="footer__col">
+        <h4>Síguenos</h4>
+        <div class="footer__social">
+          <a href="#" data-wa-link target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#" data-ig-link target="_blank" rel="noopener">Instagram</a>
+          <a href="#" data-tt-link target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer__nota" id="footAviso"></p>
+    <p class="footer__copy">© <span id="year"></span> <span data-nombre></span>. Hecho con amor desde casa 🌷</p>
+  </footer>
+
+  <!-- ================= MODAL CONFIGURADOR ================= -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="cfgNombre">
+      <button class="modal__close" data-close aria-label="Cerrar configurador">×</button>
+
+      <div class="cfg">
+        <!-- Imagen del ramo -->
+        <div class="cfg__media">
+          <img id="cfgImg" alt="" />
+        </div>
+
+        <!-- Panel de configuración -->
+        <div class="cfg__body">
+          <p class="cfg__tipo" id="cfgTipo"></p>
+          <h3 class="cfg__nombre" id="cfgNombre"></h3>
+          <p class="cfg__desc" id="cfgDesc"></p>
+
+          <!-- "Incluye" (solo arreglos mixtos) -->
+          <p class="cfg__incluye" id="cfgIncluye" hidden></p>
+
+          <!-- Presentación (precio fijo; selección obligatoria) -->
+          <div class="cfg__field">
+            <span class="cfg__label" id="lblOpcion">Presentación</span>
+            <div class="opciones" id="cfgOpciones" role="radiogroup" aria-labelledby="lblOpcion"></div>
+            <p class="cfg__cotiza" id="cfgCotiza" hidden>¿Necesitas más? Cotiza cantidades mayores por WhatsApp.</p>
+          </div>
+
+          <!-- Colores (swatches; selección obligatoria) -->
+          <div class="cfg__field">
+            <span class="cfg__label" id="lblColor">Color</span>
+            <div class="swatches" id="cfgColores" role="radiogroup" aria-labelledby="lblColor"></div>
+            <p class="cfg__nota-color" id="cfgNotaColor" hidden></p>
+          </div>
+
+          <!-- Subtotal estimado -->
+          <div class="cfg__subtotal">
+            <div>
+              <span>Precio estimado</span>
+              <small>Se confirma por WhatsApp según disponibilidad</small>
+            </div>
+            <strong id="cfgSubtotal">$0</strong>
+          </div>
+
+          <!-- FIRMA: resumen en vivo de la selección -->
+          <div class="cfg__preview">
+            <span class="cfg__preview-cap">Tu arreglo</span>
+            <p class="cfg__bubble" id="cfgPreview"></p>
+          </div>
+
+          <!-- Agregar al pedido (bloqueado hasta que sea válido) -->
+          <button class="btn btn--primary btn--block" id="cfgSolicitar" disabled>
+            🛒 Agregar al pedido
+          </button>
+          <p class="cfg__hint" id="cfgHint" aria-live="polite"></p>
+          <p class="cfg__note">Puedes agregar varios arreglos; el pedido se cierra por WhatsApp o Instagram. 💬</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CARRITO (panel lateral) ================= -->
+  <div class="cart" id="cart" aria-hidden="true">
+    <div class="cart__backdrop" data-cart-close></div>
+    <aside class="cart__panel" role="dialog" aria-modal="true" aria-label="Tu pedido">
+      <header class="cart__head">
+        <h3>Tu pedido</h3>
+        <button class="modal__close cart__close" data-cart-close aria-label="Cerrar pedido">×</button>
+      </header>
+
+      <!-- Líneas del pedido (se inyectan) -->
+      <div class="cart__items" id="cartItems"></div>
+
+      <!-- Total -->
+      <div class="cart__total">
+        <span>Total estimado</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+
+      <!-- Datos del cliente -->
+      <div class="cart__form">
+        <label class="cart__label" for="cartNombre">Nombre *</label>
+        <input class="cart__input" id="cartNombre" type="text" autocomplete="name"
+               placeholder="Tu nombre" maxlength="80" />
+
+        <label class="cart__label" for="cartDireccion">Dirección de entrega (opcional)</label>
+        <input class="cart__input" id="cartDireccion" type="text" autocomplete="street-address"
+               placeholder="Calle, número, colonia…" maxlength="160" />
+      </div>
+
+      <!-- Cierre del pedido -->
+      <button class="btn btn--whatsapp btn--block" id="cartWhats" disabled>
+        <span class="ico-wa"></span> Pedir por WhatsApp
+      </button>
+      <button class="btn btn--insta btn--block" id="cartInsta" disabled>
+        Pedir por Instagram
+      </button>
+      <p class="cart__hint" id="cartHint" aria-live="polite"></p>
+      <p class="cfg__note">En Instagram copiamos tu pedido al portapapeles para que solo lo pegues. 💬</p>
+      <p class="cfg__note">El precio es estimado; se confirma por WhatsApp según disponibilidad.</p>
+    </aside>
+  </div>
+
+  <!-- Toast / aviso accesible -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="#" class="fab" data-wa-link aria-label="Pedir por WhatsApp" target="_blank" rel="noopener">
+    <span class="ico-wa ico-wa--lg"></span>
+  </a>
+
+  <!-- ES Modules: un solo entry point -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

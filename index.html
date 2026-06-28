@@ -27,7 +27,7 @@
 
   <!-- ================= PORTÓN DE EDAD 18+ ================= -->
   <!-- ponytail: inline + localStorage; sin librería. Bloquea hasta confirmar +18. -->
-  <div id="ageGate" hidden style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(20,8,14,.92);color:#fff;text-align:center;padding:24px;font-family:'DM Sans',system-ui,sans-serif;">
+  <div id="ageGate" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(20,8,14,.92);color:#fff;text-align:center;padding:24px;font-family:'DM Sans',system-ui,sans-serif;">
     <div style="max-width:420px;">
       <h2 style="font-family:'Fraunces',serif;font-size:1.8rem;margin:0 0 .5rem;">Verificación de edad</h2>
       <p style="margin:0 0 1.5rem;opacity:.85;">Este sitio vende productos de vapeo. Debes ser mayor de edad para entrar.</p>
@@ -45,11 +45,10 @@
       var ok = false;
       try { ok = localStorage.getItem("ageOk") === "1"; } catch (e) {}
       if (ok) return;
-      gate.hidden = false;
+      gate.style.display = "flex";
       document.body.style.overflow = "hidden";
       document.getElementById("ageYes").addEventListener("click", function () {
-        // Ocultar SIEMPRE primero: si localStorage falla (incógnito/file://) igual entras.
-        gate.hidden = true;
+        gate.style.display = "none";
         document.body.style.overflow = "";
         try { localStorage.setItem("ageOk", "1"); } catch (e) {}
       });

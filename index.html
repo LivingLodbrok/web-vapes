@@ -41,14 +41,17 @@
   </div>
   <script>
     (function () {
-      if (localStorage.getItem("ageOk") === "1") return;
       var gate = document.getElementById("ageGate");
+      var ok = false;
+      try { ok = localStorage.getItem("ageOk") === "1"; } catch (e) {}
+      if (ok) return;
       gate.hidden = false;
       document.body.style.overflow = "hidden";
       document.getElementById("ageYes").addEventListener("click", function () {
-        localStorage.setItem("ageOk", "1");
+        // Ocultar SIEMPRE primero: si localStorage falla (incógnito/file://) igual entras.
         gate.hidden = true;
         document.body.style.overflow = "";
+        try { localStorage.setItem("ageOk", "1"); } catch (e) {}
       });
       document.getElementById("ageNo").addEventListener("click", function () {
         document.getElementById("ageDenied").hidden = false;

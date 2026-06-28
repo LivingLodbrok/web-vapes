@@ -7,7 +7,7 @@
   <!-- ===== SEO básico ===== -->
   <title>Fellie Florería · Ramos de flores frescas en Monterrey</title>
   <meta name="description" content="Ramos de flores frescas hechos a mano en Monterrey. Diseños monoflorales y mixtos. Configura tu pedido y ciérralo por WhatsApp o Instagram." />
-  <meta name="theme-color" content="#7A2E4A" />
+  <meta name="theme-color" content="#0B0B16" />
 
   <!-- ===== Open Graph (al compartir el link) ===== -->
   <meta property="og:type" content="website" />
@@ -16,14 +16,45 @@
   <meta property="og:image" content="assets/pag28.png" />
   <meta property="og:locale" content="es_MX" />
 
-  <!-- ===== Tipografías: Fraunces (display, con carácter) + DM Sans (body) ===== -->
+  <!-- ===== Tipografías: Space Grotesk (display, futurista) + DM Sans (body) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
+  <!-- ================= PORTÓN DE EDAD 18+ ================= -->
+  <!-- ponytail: inline + localStorage; sin librería. Bloquea hasta confirmar +18. -->
+  <div id="ageGate" hidden style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(20,8,14,.92);color:#fff;text-align:center;padding:24px;font-family:'DM Sans',system-ui,sans-serif;">
+    <div style="max-width:420px;">
+      <h2 style="font-family:'Fraunces',serif;font-size:1.8rem;margin:0 0 .5rem;">Verificación de edad</h2>
+      <p style="margin:0 0 1.5rem;opacity:.85;">Este sitio vende productos de vapeo. Debes ser mayor de edad para entrar.</p>
+      <p style="font-weight:600;margin:0 0 1rem;">¿Eres mayor de 18 años?</p>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button id="ageYes" style="cursor:pointer;border:0;border-radius:10px;padding:12px 28px;font-weight:600;font-size:1rem;background:linear-gradient(120deg,#7c3aed,#f43f5e);color:#fff;box-shadow:0 0 24px rgba(124,58,237,.55);">Sí, soy +18</button>
+        <button id="ageNo" style="cursor:pointer;border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:12px 28px;font-weight:600;font-size:1rem;background:transparent;color:#fff;">No</button>
+      </div>
+      <p id="ageDenied" hidden style="margin:1.25rem 0 0;color:#F4C2C2;">Lo sentimos, debes ser mayor de 18 años para acceder.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      if (localStorage.getItem("ageOk") === "1") return;
+      var gate = document.getElementById("ageGate");
+      gate.hidden = false;
+      document.body.style.overflow = "hidden";
+      document.getElementById("ageYes").addEventListener("click", function () {
+        localStorage.setItem("ageOk", "1");
+        gate.hidden = true;
+        document.body.style.overflow = "";
+      });
+      document.getElementById("ageNo").addEventListener("click", function () {
+        document.getElementById("ageDenied").hidden = false;
+      });
+    })();
+  </script>
 
   <!-- ================= HEADER / NAV ================= -->
   <header class="nav" id="nav">
@@ -165,7 +196,7 @@
 
           <!-- Colores (swatches; selección obligatoria) -->
           <div class="cfg__field">
-            <span class="cfg__label" id="lblColor">Color</span>
+            <span class="cfg__label" id="lblColor">Sabor</span>
             <div class="swatches" id="cfgColores" role="radiogroup" aria-labelledby="lblColor"></div>
             <p class="cfg__nota-color" id="cfgNotaColor" hidden></p>
           </div>

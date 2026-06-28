@@ -39,15 +39,18 @@ export function pintarNegocio() {
 
   // Enlaces de contacto genéricos (hero, header, footer, FAB)
   const waGenerico = urlWhatsApp(
-    `Hola ${NEGOCIO.nombre} 🌷 Me interesa pedir un ramo. ¿Me ayudan?`
+    `Hola ${NEGOCIO.nombre} 👋 Me interesa hacer un pedido. ¿Me ayudan?`
   );
   $$("[data-wa-link]").forEach((a) => (a.href = waGenerico));
-  $$("[data-ig-link]").forEach(
-    (a) => (a.href = `https://instagram.com/${NEGOCIO.instagram}`)
-  );
-  $$("[data-tt-link]").forEach(
-    (a) => (a.href = `https://tiktok.com/@${NEGOCIO.tiktok}`)
-  );
+  // IG / TikTok: si no hay cuenta configurada, ocultar el enlace en vez de dejarlo roto.
+  $$("[data-ig-link]").forEach((a) => {
+    if (NEGOCIO.instagram) a.href = `https://instagram.com/${NEGOCIO.instagram}`;
+    else a.hidden = true;
+  });
+  $$("[data-tt-link]").forEach((a) => {
+    if (NEGOCIO.tiktok) a.href = `https://tiktok.com/@${NEGOCIO.tiktok}`;
+    else a.hidden = true;
+  });
 }
 
 /* ---------- Reseñas ---------- */

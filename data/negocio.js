@@ -5,21 +5,21 @@
    ===================================================================== */
 
 export const NEGOCIO = {
-  nombre: "Fellie Florería",
-  eslogan: "Hecho con amor desde casa",
-  ciudad: "Monterrey y área metropolitana",
-  tono: "elegante, cálido y artesanal",
+  nombre: "VZZVAPEZZ",
+  eslogan: "Hecho con amor desde casa", // PENDIENTE: eslogan de VZZVAPEZZ
+  ciudad: "Monterrey y área metropolitana", // PENDIENTE: zona de entrega real
+  tono: "futurista, juvenil y directo",
 
   /* --- Canales de venta -------------------------------------------- */
   // WhatsApp en formato internacional, SOLO dígitos (52 = México + 10 dígitos).
-  whatsapp: "528116544571",
-  // Usuario de Instagram SIN la arroba "@".
-  instagram: "fellie.floreria",
-  // Usuario de TikTok SIN la arroba "@".
-  tiktok: "fellie.floreria",
+  whatsapp: "528126995083",
+  // Usuario de Instagram SIN la arroba "@".  PENDIENTE: cuenta de VZZVAPEZZ
+  instagram: "",
+  // Usuario de TikTok SIN la arroba "@".  PENDIENTE: cuenta de VZZVAPEZZ
+  tiktok: "",
 
   /* --- Contacto / footer ------------------------------------------- */
-  telefono: "+52 81 1654 4571",
+  telefono: "+52 812 699 5083",
   correo: "", // pendiente: agregar correo real cuando lo tengan
   horario: "Lunes a Sábado · 8:00 a.m. – 5:00 p.m.",
   ubicacion: "San Felipe 417, Mitras Norte, Monterrey, N.L.",

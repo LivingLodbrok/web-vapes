@@ -14,10 +14,10 @@ import { formatMXN } from "./formato.js";
 export function construirMensaje(pedido) {
   const { flor, opcion, color } = pedido;
   return (
-    `Hola ${NEGOCIO.nombre} 🌷 Quiero hacer un pedido:\n` +
-    `• Ramo: ${flor.nombre} (${flor.categoria})\n` +
+    `Hola ${NEGOCIO.nombre} 👋 Quiero hacer un pedido:\n` +
+    `• Producto: ${flor.nombre} (${flor.categoria})\n` +
     `• Presentación: ${opcion.etiqueta}\n` +
-    `• Color: ${color}\n` +
+    `• Sabor: ${color}\n` +
     `• Estimado: ${formatMXN(opcion.precio)}\n` +
     `¿Me confirman disponibilidad y entrega?`
   );
@@ -30,16 +30,16 @@ export function construirMensaje(pedido) {
 export function construirMensajeCarrito(items, datos = {}) {
   const total = items.reduce((s, i) => s + i.precio * i.cantidad, 0);
 
-  let msg = `¡Hola ${NEGOCIO.nombre}! 🌷 Me gustaría hacer el siguiente pedido:\n\n`;
+  let msg = `¡Hola ${NEGOCIO.nombre}! 👋 Me gustaría hacer el siguiente pedido:\n\n`;
 
   items.forEach((i) => {
-    msg += `🌸 ${i.cantidad}x ${i.nombre} (${i.categoria})\n`;
+    msg += `🛒 ${i.cantidad}x ${i.nombre} (${i.categoria})\n`;
     msg += `   • Presentación: ${i.etiqueta}\n`;
-    msg += `   • Color: ${i.color}\n`;
+    msg += `   • Sabor: ${i.color}\n`;
     msg += `   • ${formatMXN(i.precio)}${i.cantidad > 1 ? " c/u" : ""}\n\n`;
   });
 
-  msg += `💐 Total estimado: ${formatMXN(total)}\n\n`;
+  msg += `🧾 Total estimado: ${formatMXN(total)}\n\n`;
   if (datos.nombre) msg += `Nombre: ${datos.nombre}\n`;
   if (datos.direccion) msg += `Dirección de entrega: ${datos.direccion}\n`;
   msg += `\n¿Me confirman disponibilidad y entrega? 🙌`;

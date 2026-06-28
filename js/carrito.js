@@ -39,7 +39,11 @@ export function agregarAlCarrito(arreglo) {
 
 /* ------- Cálculos -------------------------------------------------- */
 const totalPiezas = () => items.reduce((s, i) => s + i.cantidad, 0);
-const totalMXN = () => items.reduce((s, i) => s + i.precio * i.cantidad, 0);
+// Si algún producto tiene precio pendiente, el total queda "A confirmar" (null).
+const totalMXN = () =>
+  items.some((i) => !Number.isFinite(i.precio))
+    ? null
+    : items.reduce((s, i) => s + i.precio * i.cantidad, 0);
 
 /* ------- Badge del botón del carrito (contador) ------------------- */
 function actualizarBadge() {
@@ -54,7 +58,7 @@ function render() {
   const cont = $("#cartItems");
 
   if (items.length === 0) {
-    cont.innerHTML = `<p class="cart__vacio">Tu pedido está vacío.<br>Agrega un arreglo desde el catálogo 🌷</p>`;
+    cont.innerHTML = `<p class="cart__vacio">Tu pedido está vacío.<br>Agrega un producto desde el catálogo 🛒</p>`;
   } else {
     cont.innerHTML = items
       .map(
@@ -63,7 +67,7 @@ function render() {
           <div class="citem__info">
             <p class="citem__name">${esc(i.nombre)}</p>
             <p class="citem__meta">${esc(i.etiqueta)} · ${esc(i.color)}</p>
-            <p class="citem__price">${formatMXN(i.precio)} c/u</p>
+            <p class="citem__price">${Number.isFinite(i.precio) ? formatMXN(i.precio) + " c/u" : "A confirmar"}</p>
           </div>
           <div class="citem__actions">
             <div class="citem__qty">

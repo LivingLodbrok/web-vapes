@@ -10,7 +10,8 @@ const mxn = new Intl.NumberFormat("es-MX", {
   maximumFractionDigits: 0,
 });
 
-export const formatMXN = (n) => mxn.format(n);
+// Precio pendiente (null/NaN) -> "A confirmar"; el precio real se cierra por WhatsApp.
+export const formatMXN = (n) => (Number.isFinite(n) ? mxn.format(n) : "A confirmar");
 
 // Atajos de selección
 export const $ = (sel, ctx = document) => ctx.querySelector(sel);

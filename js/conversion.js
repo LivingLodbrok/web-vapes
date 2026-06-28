@@ -28,7 +28,9 @@ export function construirMensaje(pedido) {
    `datos` = { nombre, direccion } capturados en el carrito.
    Sale limpio, con saltos de línea y emojis. */
 export function construirMensajeCarrito(items, datos = {}) {
-  const total = items.reduce((s, i) => s + i.precio * i.cantidad, 0);
+  const total = items.some((i) => !Number.isFinite(i.precio))
+    ? null
+    : items.reduce((s, i) => s + i.precio * i.cantidad, 0);
 
   let msg = `¡Hola ${NEGOCIO.nombre}! 👋 Me gustaría hacer el siguiente pedido:\n\n`;
 

@@ -35,6 +35,8 @@ export function abrirConfigurador(id) {
   $("#cfgTipo").textContent = flor.categoria;
   $("#cfgNombre").textContent = flor.nombre;
   $("#cfgDesc").textContent = flor.descripcion;
+  // Rótulo de la variante (Sabor para líquidos/desechables, Color para dispositivos)
+  $("#lblColor").textContent = flor.ejeEtiqueta || "Sabor";
 
   // "Incluye" (solo mixtos) y aclaración de colores (nota)
   const incluye = $("#cfgIncluye");
@@ -133,9 +135,10 @@ function refrescar() {
   $("#cfgSubtotal").textContent = formatMXN(pedido.opcion.precio);
 
   // Resumen en vivo de la selección (la "firma" del sitio)
+  const eje = (pedido.flor.ejeEtiqueta || "Sabor").toLowerCase();
   $("#cfgPreview").textContent = pedido.color
     ? `${pedido.flor.nombre} · ${pedido.opcion.etiqueta} · ${pedido.color} — ${formatMXN(pedido.opcion.precio)}`
-    : "Selecciona un color para completar tu arreglo…";
+    : `Selecciona un ${eje} para completar tu pedido…`;
 
   // Validación del botón "Agregar al pedido"
   const btn = $("#cfgSolicitar");
@@ -146,7 +149,7 @@ function refrescar() {
   } else {
     btn.disabled = true;
     hint.textContent = !pedido.color
-      ? "Falta elegir un color 🎨"
+      ? `Falta elegir un ${(pedido.flor.ejeEtiqueta || "Sabor").toLowerCase()} 👇`
       : "Elige una presentación.";
   }
 }

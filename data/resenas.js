@@ -5,40 +5,41 @@
    Si no hay foto, deja "" y se muestra la inicial del nombre.
    ===================================================================== */
 
+/* PENDIENTE: reemplaza por reseñas reales de tus clientes. */
 export const RESENAS = [
   {
-    nombre: "María Fernanda",
+    nombre: "Andrea L.",
     estrellas: 5,
     foto: "https://i.pravatar.cc/120?img=47",
     comentario:
-      "El ramo llegó perfecto y olía delicioso. Mi mamá lloró de la emoción. ¡Volveré a pedir!",
+      "Pedí por WhatsApp y me confirmaron en minutos. El sabor Mango Sunrise está increíble.",
   },
   {
-    nombre: "Carlos Rentería",
+    nombre: "Kevin R.",
     estrellas: 5,
     foto: "https://i.pravatar.cc/120?img=12",
     comentario:
-      "Pedí por WhatsApp y en minutos me confirmaron. Súper atentos y las flores frescas.",
+      "El pod recargable rinde un montón y se siente premium. Súper atentos para resolver dudas.",
   },
   {
-    nombre: "Ana Sofía",
+    nombre: "Dani",
     estrellas: 4,
     foto: "",
     comentario:
-      "Hermosos arreglos y precio justo. Me encantó poder elegir los colores exactos.",
+      "Buenos precios y variedad de sabores. Me gustó poder elegir el nivel de nicotina.",
   },
   {
-    nombre: "Diego Treviño",
+    nombre: "Bruno T.",
     estrellas: 5,
     foto: "https://i.pravatar.cc/120?img=33",
     comentario:
-      "Entrega puntual en San Pedro y un detalle precioso. Mi novia quedó encantada.",
+      "Entrega rápida y producto original. El mod de 40W saca unas nubes brutales.",
   },
   {
-    nombre: "Regina M.",
+    nombre: "Mariana V.",
     estrellas: 5,
     foto: "",
     comentario:
-      "El configurador me ayudó a no equivocarme con la cantidad. Práctico y elegante.",
+      "La web es facilísima: eliges, agregas al carrito y cierras por WhatsApp. Cero complicación.",
   },
 ];

@@ -6,7 +6,7 @@
 
 export const NEGOCIO = {
   nombre: "VZZVAPEZZ",
-  eslogan: "Hecho con amor desde casa", // PENDIENTE: eslogan de VZZVAPEZZ
+  eslogan: "El futuro del vapeo, a un toque", // PENDIENTE: ajústalo si quieres
   ciudad: "Monterrey y área metropolitana", // PENDIENTE: zona de entrega real
   tono: "futurista, juvenil y directo",
 
@@ -24,18 +24,18 @@ export const NEGOCIO = {
   horario: "Lunes a Sábado · 8:00 a.m. – 5:00 p.m.",
   ubicacion: "San Felipe 417, Mitras Norte, Monterrey, N.L.",
 
-  /* --- Quiénes somos ----------------------------------------------- */
+  /* --- Quiénes somos --------- PENDIENTE: ajusta el texto a tu historia real */
   historia:
-    "Fellie Florería nació en casa, del gusto por crear arreglos florales que " +
-    "transmiten emociones. Cada ramo se elabora a mano, con flores naturales y " +
-    "el cuidado de un detalle hecho especialmente para ti.",
+    "VZZVAPEZZ es tu tienda de vapeo: desechables, pods recargables y e-liquids " +
+    "seleccionados para quienes buscan calidad, sabor y estilo. Pedido rápido y " +
+    "atención directa por WhatsApp.",
   propuestaValor:
-    "Diseños monoflorales y mixtos, flores frescas y entrega en todo Monterrey y " +
-    "su área metropolitana. Tú eliges el diseño; nosotros lo hacemos realidad.",
-  // Aviso del catálogo (flores naturales)
+    "Desechables, pods recargables y líquidos premium. Tú eliges producto y sabor; " +
+    "nosotros confirmamos precio y entrega al instante.",
+  // Aviso legal del catálogo
   aviso:
-    "Cada arreglo se elabora con flores naturales, por lo que el resultado final " +
-    "puede diferir de la imagen de referencia. La selección de flores y tonalidades " +
-    "está sujeta a disponibilidad y temporada.",
-  fotoNosotros: "assets/pag16.jpg",
+    "Venta exclusiva para mayores de 18 años. Los productos de vapeo contienen " +
+    "nicotina, una sustancia adictiva. Imágenes de referencia; disponibilidad y " +
+    "precios sujetos a confirmación por WhatsApp.",
+  fotoNosotros: "assets/life-window.jpg",
 };
